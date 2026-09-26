@@ -20,7 +20,7 @@ const { data: countryData } = await useAsyncData(
     if (!country) return { country: null, rows: [] as RecordRow[] }
 
     const resultsRes = await $fetch<CometList<RecordRow>>('/api/comet/content/olimpiadas-resultados', {
-      query: { 'filter[country]': country.id, limit: 100 }
+      query: { 'filter[country]': country.slug, limit: 100 }
     })
     const rows = [...resultsRes.data].sort((a, b) => a.year - b.year)
     return { country, rows }

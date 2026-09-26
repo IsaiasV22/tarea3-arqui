@@ -1,5 +1,6 @@
 export interface CountryRef {
   id: string
+  slug: string
   noc: string
   iso3: string
 }
