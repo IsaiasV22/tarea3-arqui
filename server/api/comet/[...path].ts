@@ -6,7 +6,7 @@ const USER_AGENT = 'Mozilla/5.0 (compatible; Nuxt-Comet-Proxy)'
 let challengeCookie = ''
 
 function solveChallenge(html: string) {
-  const [key, iv, cipher] = [...html.matchAll(/toNumbers\("([0-9a-f]+)"\)/g)].map((m) => Buffer.from(m[1], 'hex'))
+  const [key, iv, cipher] = [...html.matchAll(/toNumbers\("([0-9a-f]+)"\)/g)].map((m) => Buffer.from(m[1] ?? '', 'hex')) as [Buffer, Buffer, Buffer]
   const decipher = createDecipheriv('aes-128-cbc', key, iv).setAutoPadding(false)
   return Buffer.concat([decipher.update(cipher), decipher.final()]).toString('hex')
 }
