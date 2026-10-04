@@ -25,7 +25,7 @@ const { data: countryData } = await useAsyncData(
     const rows = [...resultsRes.data].sort((a, b) => a.year - b.year)
     return { country, rows }
   },
-  { watch: [noc] }
+  { watch: [noc, year] }
 )
 
 const country = computed(() => countryData.value?.country ?? null)
